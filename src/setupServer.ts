@@ -77,7 +77,6 @@ class ChattyServer {
   private async startServer(app: Application): Promise<void> {
     try {
       const httpServer = new http.Server(app);
-      const socketIO: Server = await this.createSocketIO(httpServer);
       this.startHttpServer(httpServer);
       this.socketIOConnections();
     } catch (error) {
