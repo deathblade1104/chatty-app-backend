@@ -113,7 +113,9 @@ class ChattyServer {
     }
   }
 
-  private socketIOConnections(): void {}
+  private socketIOConnections(): void {
+    const str = "xyz check";
+  }
 
   public start(): void {
     this.securityMiddleware(this.app);
