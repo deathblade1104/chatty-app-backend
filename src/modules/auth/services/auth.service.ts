@@ -1,6 +1,7 @@
 import { FilterQuery } from 'mongoose';
 import { IAuthDocument } from '../interfaces/auth.interface';
 import AuthModel from '../models/auth.model';
+import utils from '../../../core/utils';
 
 class AuthService {
   async getUserByEmailOrUserName(
@@ -9,7 +10,7 @@ class AuthService {
   ): Promise<IAuthDocument | null | undefined> {
     try {
       const query: FilterQuery<IAuthDocument> = {
-        $or: [{ username: username }, { email: email }]
+        $or: [{ username: utils.firstLetterUppercase(username as string) }, { email: utils.lowerCase(email as string) }]
       };
       const user: IAuthDocument | null = await AuthModel.findOne(query).exec();
       return user;

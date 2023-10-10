@@ -16,8 +16,14 @@ class AuthController {
           `User already exists with same username ${username} or email ${email}. Please try signing in.`
         );
       }
-
-      const _objectId = 
+      res.status(200).send({
+        message: 'success',
+        data: {
+          password,
+          avatarColor,
+          avatarImage
+        }
+      });
     } catch (error) {
       next(error);
     }
